@@ -1,0 +1,143 @@
+/* Footer Section Style */
+.footer{
+    @include desktop{
+        padding-top: toRem(50);
+    }
+    @include min-desktop{
+        padding-top: toRem(120);
+    }
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        @include min-desktop{
+            width: 50%;
+        }
+        height: 100%;
+        background-color: rgba($color-primary, $alpha: 0.05);
+    }
+    &__logo{
+        margin-bottom: toRem(25);
+        &__image{
+            max-height: toRem(48);
+        }
+    }
+    &__block{
+        margin-bottom: toRem(40);
+        &__title{
+            font-size: toRem(26);
+            font-weight: 800;
+            margin-bottom: toRem(20);
+        }
+        &__list{
+            &__item{
+                font-size: toRem(14);
+                margin-bottom: toRem(20);
+            }
+            &__link{
+                display: inline-block;
+                &:hover,
+                &:focus-visible{
+                    text-decoration: underline;
+                }
+            }
+        }
+        &__bg-title{
+            position: relative;
+            font-size: toRem(15);
+            padding-left: toRem(8);
+            font-weight: 400;
+            height: toRem(30);
+            margin-bottom: toRem(30);
+            &::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background-color: rgba($color-primary, $alpha: 0.5);
+                z-index: -1;
+            }
+        }
+        &__social-list{
+            gap: toRem(15);
+            &__link{
+                width: toRem(40);
+                height: toRem(40);
+                background-color: rgba($color-primary, $alpha: 0.3);
+                transition: background .2s;
+                &:hover,
+                &:focus-visible{
+                    background-color: rgba($color-primary, $alpha: 0.5);
+                }
+            }
+        }
+        &__form{
+            .form{
+                &-label{
+                    font-size: toRem(12);
+                }
+                &-group{
+                    max-width: toRem(400);
+                    background-color: rgba($color-primary, $alpha: 0.1);
+                }
+                &-control{
+                    font-size: toRem(14);
+                    font-weight: 300;
+                    text-shadow: none;
+                    min-height: toRem(55);
+                }
+            }
+            &__btn{
+                font-size: toRem(14);
+                background-color: rgba($color-primary, $alpha: 0.3);
+                font-weight: 300;
+                padding: toRem(8) toRem(15);
+                transition: background .3s;
+                &:hover,
+                &:focus-visible{
+                    background-color: rgba($color-primary, $alpha: 0.5);
+                }
+            }
+        }
+    }
+    &__bottom{
+        padding: toRem(30) 0;
+        background-color: rgb(251, 251, 251);
+    }
+    &__copyright{
+        font-size: toRem(12);
+        &__link{
+            &::before{
+                content: "|";
+                margin: 0 toRem(5);
+            }
+            &:hover,
+            &:focus-visible{
+                text-decoration: underline;
+            }
+        }
+    }
+    &__social-list{
+        &__item{
+            &:not(:first-child){
+                margin-left: toRem(5);
+            }
+        }
+        &__link{
+            padding: toRem(2);
+            color: $color-white;
+            transition: transform .2s ease-in-out;
+            &__image{
+                max-width: toRem(30);
+            }
+            &:hover,
+            &:focus-visible{
+                transform: translateY(-20%);
+            }
+        }
+    }
+}

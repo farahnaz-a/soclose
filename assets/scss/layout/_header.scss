@@ -1,0 +1,249 @@
+/* Header Section Style */
+.header{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	border-bottom: 1px solid transparent;
+	z-index: 9;
+	@include min-mobile{
+		padding-top: toRem(40);
+	}
+	@include mobile{
+		padding-top: toRem(20);
+	}
+	padding-bottom: toRem(20);
+	transition: padding .6s ease;
+	.navbar{
+		&-brand{
+			&__logo{
+				max-height: toRem(38);
+			}
+		}
+		&-toggler{
+			font-size: toRem(28);
+			color: $color-text;
+			z-index: 8;
+			@extend %transition;
+			&[aria-expanded="true"]{
+				color: $color-danger;
+				.navbar-toggler__icon{
+					&--show{
+						display: none;
+					}
+					&--hide{
+						display: block;
+					}
+				}
+			}
+			&__icon{
+				&--hide{
+					display: none;
+				}
+			}
+		}
+		&-collapse{
+			@include desktop{
+				position: fixed;
+				top: 0;
+				right: 0;
+				transform: translateX(100%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				width: 50%;
+				height: 100vh;
+				overflow: auto;
+				background-color: $color-white;
+				transition: transform ease-in-out .3s;
+				&.show{
+					transform: translateX(0);
+				}
+				.navbar-nav{
+					width: 100%;
+					margin-top: toRem(20);
+					.nav-item{
+						width: 100%;
+					}
+				}
+			}
+			@include tablet{
+				width: 100%;
+			}
+		}
+		&-nav{
+			align-items: center;
+		}
+		.nav{
+			&-item{
+				.dropdown{
+					&-toggle{
+						&::after{
+							display: none;
+						}
+						&__icon{
+							font-size: toRem(14);
+							@extend %transition;
+						}
+					}
+					&-menu{
+						background-color: $color-white;
+						padding: toRem(5) 0;
+						border-radius: 0;
+						border: 0;
+						@include min-desktop{
+							display: block;
+							transform: translateY(40%);
+							opacity: 0;
+							visibility: hidden;
+							box-shadow: 0 toRem(5) toRem(25) rgba($color-black, $alpha: 0.1);
+							transition: all .6s ease;
+						}
+						&--lg{
+							min-width: toRem(185);
+						}
+						&--sm{
+							min-width: toRem(85);
+						}
+					}
+					&-item{
+						position: relative;
+						color: $color-text;
+						font-size: toRem(14);
+						background-color: transparent;
+						@extend %transition;
+						padding: toRem(10) toRem(25);
+						&::before{
+							content: "";
+							position: absolute;
+							top: 50%;
+							left: toRem(10);
+							transform: translateY(-50%);
+							width: 0;
+							height: 1.5px;
+							background-color: $color-primary;
+							transition: width .4s;
+						}
+						&__image{
+							max-width: toRem(20);
+						}
+						&.active,
+						&:active,
+						&:hover,
+						&:focus-visible{
+							color: $color-primary;
+							padding-left: toRem(35);
+							&::before{
+								width: toRem(15);
+							}
+						}
+					}
+				}
+				&.dropdown{
+					@include min-desktop{
+						&::before{
+							content: "";
+							position: absolute;
+							left: 0;
+							bottom: 0;
+							transform: translateY(100%);
+							width: 100%;
+							height: 100%;
+							cursor: pointer;
+							pointer-events: none;
+						}
+						&:hover,
+						&:focus{
+							&::before{
+								pointer-events: all;
+							}
+							.dropdown-menu{
+								transform: translateY(0);
+								opacity: 1;
+								visibility: visible;
+							}
+						}
+					}
+					&.show,
+					&:hover,
+					&:focus{
+						.nav-link{
+							.dropdown-toggle__icon{
+								transform: rotate(180deg);
+							}
+						}
+					}
+				}
+			}
+			&-link{
+				position: relative;
+				color: $color-text;
+				font-size: toRem(14);
+				font-weight: 600;
+				padding: toRem(10) toRem(20);
+				@extend %radius;
+				@extend %transition;
+				&__icon{
+					font-size: toRem(16);
+				}
+				&__image{
+					max-width: toRem(20);
+				}
+				&.active,
+				&:hover,
+				&:focus-visible{
+					color: $color-primary;
+					.dropdown-toggle__icon{
+						transform: rotate(180deg);
+					}
+				}
+				&:focus,
+				&[aria-expanded="true"]{
+					.dropdown-toggle__icon{
+						transform: rotate(180deg);
+					}
+					~ .dropdown-menu{
+						@include min-desktop{
+							transform: translateY(0);
+							opacity: 1;
+							visibility: visible;
+						}
+					}
+				}
+			}
+		}
+	}
+	&--fixed{
+		@include min-mobile{
+			padding-top: toRem(20);
+		}
+		border-bottom-color: #e4e4e4;
+		background-color: $color-white;
+		box-shadow: 0 3px 18px rgba($color-black, $alpha: 0.12);
+	}
+}
+.modal-open .header{
+	@include min-tablet{
+		width: calc(100% - 17px);
+	}
+}
+/* Off Canvas Navbar Toggler */
+.offCanvasMenuCloser{
+	top: 0;
+	left: 0;
+	transform: translateX(100%);
+	width: 100%;
+	height: 100%;
+	background: rgba($color: #000000, $alpha: 0.5);
+	z-index: 8;
+	opacity: 0;
+	transition: opacity .4s ease .4s;
+	display: none;
+	&.show{
+		transform: translateX(0);
+		opacity: 1;
+	}
+	@include tablet-to-desktop-lg{
+		display: block;
+	}
+}

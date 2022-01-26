@@ -1,0 +1,140 @@
+/* Pricing Section Style */
+.pricing{
+    padding: toRem(50) 0;
+    &__title{
+        font-size: toRem(28);
+        font-weight: 800;
+        @include min-desktop{
+            font-size: toRem(35);
+        }
+        @include min-desktop-xl{
+            font-size: toRem(48);
+        }
+    }
+    &__text{
+        font-size: toRem(14);
+    }
+    &__checkbox-label{
+        cursor: pointer;
+        color: $color-soft-gray;
+    }
+    &__switch{
+        display: flex;
+        align-items: center;
+        width: toRem(45);
+        height: toRem(25);
+        margin: 0 toRem(20);
+        padding: 5px;
+        cursor: pointer;
+        &__checkbox{
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+            &:checked ~ {
+                .pricing__switch{
+                    &__bg{
+                        background-color: $color-blue;
+                    }
+                    &__btn{
+                        left: toRem(25);
+                    }
+                }
+            }
+        }
+        &__bg,
+        &__btn{
+            user-select: none;
+            pointer-events: none;
+            transition: all .2s;
+        }
+        &__bg{
+            top: 0;
+            left: 0;
+            background-color: #e2e2e2;
+        }
+        &__btn{
+            position: absolute;
+            width: toRem(15);
+            height: toRem(15);
+            left: 5px;
+            border-radius: 50%;
+            background-color: $color-white;
+            box-shadow: -1px 2px 3px 0 rgba(34, 41, 47, 0.2);
+        }
+    }
+    &__card{
+        box-shadow: 0 4px 15px 0 rgba(34, 41, 47, 0.07);
+        padding: 1.5rem;
+        border-radius: 0.35rem;
+        margin-bottom: toRem(30);
+        &__head{
+            min-height: toRem(210);
+            &__image{
+                max-height: toRem(100);
+            }
+            &__title{
+                color: darken($color-soft-gray, $amount: 5);
+                font-size: toRem(22);
+                margin-bottom: toRem(5);
+            }
+            &__text{
+                color: $color-soft-gray;
+                font-size: toRem(14);
+            }
+        }
+        &__plan__title{
+            color: $color-blue;
+            font-size: toRem(40);
+            font-weight: 700;
+            &__small{
+                font-size: toRem(14);
+            }
+            &__subscript{
+                color: $color-soft-gray;
+                font-size: toRem(14);
+                font-weight: 400;
+            }
+        }
+        &__action__btn{
+            color: $color-blue;
+            font-size: toRem(14);
+        }
+        &__body{
+            display: none;
+        }
+        &__description-list{
+            &__title{
+                color: $color-soft-gray;
+                font-size: toRem(17);
+                font-weight: 700;
+                margin-top: toRem(20);
+            }
+            &__details{
+                color: $color-soft-gray;
+                border-bottom: 1px solid #f2f2f2;
+                line-height: 2.5;
+                &__icon{
+                    color: $color-blue;
+                    font-size: toRem(18);
+                    margin-right: toRem(8);
+                }
+                &--sub{
+                    .pricing__card__description-list__details__icon{
+                        color: #28c76f;
+                    }
+                }
+                &__indicate-icon{
+                    right: 0;
+                    font-size: toRem(18);
+                    &--include{
+                        color: $color-success;
+                    }
+                    &--exclude{
+                        color: $color-danger;
+                    }
+                }
+            }
+        }
+    }
+}
